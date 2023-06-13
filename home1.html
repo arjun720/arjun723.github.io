@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Welcome to Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+      background-image: url(https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGlicmFyeXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60);
+    }
+
+    .top-home-bar {
+      background-color: #f5f5f5;
+      height: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+    }
+
+    h2 {
+      font-family: 'Shantell Sans', cursive;
+      font-size: 30px;
+      background-color: white;
+      text-align: center;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 10px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+       display: block;
+    }
+
+    .center-title {
+      padding: 200px;
+      font-size: 20px;
+      font-family: 'Shantell Sans', cursive;
+      text-align: center;
+    }
+
+    .hamburger-icon {
+      font-size: 24px;
+      cursor: pointer;
+      background-color: grey;
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+    .hamburger-icon:hover {
+      background-color: darkgrey;
+    }
+
+    .available {
+      color: green;
+      font-family: 'Shantell Sans', cursive;
+    }
+
+    .unavailable {
+      color: red;
+      font-family: 'Shantell Sans', cursive;
+    }
+
+    .category-row {
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .category-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .book-container {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 20px;
+    }
+
+    .book {
+      width: 1000px; 
+            margin-right: 10px; 
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            background-color:wheat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: 'Shantell Sans', cursive;
+    }
+
+    .book img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+    }
+
+    .book p {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+    .book:hover {
+            transform: scale(1.05);
+        }
+
+     .filter-section {
+      margin-bottom: 20px;
+    }
+
+    .search-bar {
+      width: 300px;
+      height: 30px;
+      padding: 5px;
+    }
+
+    .filter-dropdown {
+      width: 200px;
+      padding: 5px;
+      margin-left: 10px;
+    }
+
+
+        
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      background-color:white;
+    }
+
+    .page-number {
+      margin: 0 5px;
+      cursor: pointer;
+      
+    }
+
+    .page-number.active {
+      font-weight: bold;
+    }
+    .count{
+      text-align:center;
+      align-items: center;
+      background-color:white;
+      font-family: 'Shantell Sans', cursive;
+    }
+  </style>
+</head>
+<body>
+   <div class="top-home-bar">
+        <div class="menu">
+            <div class="dropdown">
+                <div class="hamburger-icon">&#9776;</div>
+                <div class="dropdown-content">
+                    <a href="home.html">Home</a>
+                    <a href="https://www.linkedin.com/in/arjun-s-s-2bba4b200">About Creator</a>
+                </div>
+            </div>
+            
+              <h1 class="center-title">Welcome to Library</h1>
+              
+        </div>
+
+  <div class="filter-section">
+            <input class="search-bar" type="text" id="search-bar" placeholder="Search...">
+           <select id="filter-dropdown" class="filter-dropdown">
+      <option value="all">All</option>
+      <option value="horror">Horror</option>
+      <option value="romance">Romance</option>
+      <option value="science">Science</option>
+    </select>
+  </div>
+  </div>
+     
+<div id="total-books-container" class="count">
+  <span id="total-books-count"></span> <!-- Total book count -->
+</div>
+
+  <div class="category-row">
+     
+    <h2 class="category-title">Horror</h2>
+    <div class="book-container" id="horror-books">
+      <div class="book">
+        <img src="https://s3.r29static.com/bin/entry/754/545x830,85/2030551/image.webp" alt="Book 1">
+        <p class="book-title">Book Name: IT</p>
+        <p class="author-name">Author: Stephen King</p>
+        <p class="availability">Published Year: 1986</p>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/91P53FgrX1L._AC_UF1000,1000_QL80_.jpg" alt="Book 2">
+        <p class="book-title">Book Name:kolaiyuthir kalam</p>
+        <p class="author-name">Author: sujatha</p>
+        <p class="availability">Published Year: 1981</p>
+      </div>
+      <div class="book">
+        <img src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1634836841-41lfCsCLlzL._SL500_.jpg?crop=1xw:1xh;center,top&resize=980:*" alt="Book 3">
+        <p class="book-title">Book Name: The Exorcist</p>
+        <p class="author-name">Author: William Peter</p>
+        <p class="availability">Published Year: 1971</p>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/51EWsOoKyPL.jpg" alt="Book 10">
+        <p class="book-title">Book 10</p>
+        <p class="author-name">Author 10</p>
+        <p class="availability">Available</p>
+      </div>
+      <div class="book">
+        <img src="https://www.bookgeeks.in/wp-content/uploads/2019/12/The-Green-Room-by-Nag-Mani-1200x1801.jpeg" alt="Book 11">
+        <p class="book-title">Book 11</p>
+        <p class="author-name">Author 11</p>
+        <p class="availability">Available</p>
+      </div>
+      <div class="book">
+        <img src="https://cdn.pastemagazine.com/www/articles/assets_c/2018/01/NightThings-thumb-200x320-699964.jpg" alt="Book 12">
+        <p class="book-title">Book 12</p>
+        <p class="author-name">Author 12</p>
+        <p class="availability">Available</p>
+      </div>
+    </div>
+    <div class="pagination" id="horror-pagination"></div>
+  </div>
+
+  <div class="category-row">
+    <h2 class="category-title">Romance</h2>
+    <div class="book-container" id="romance-books">
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/51llisLKlRL.jpg" alt="Book 4">
+        <p class="book-title">Book 4</p>
+        <p class="author-name">Author 4</p>
+        <p class="availability">Available</p>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/71Q1tPupKjL._AC_UF1000,1000_QL80_.jpg" alt="Book 5">
+        <p class="book-title">Book 5</p>
+        <p class="author-name">Author 5</p>
+        <p class="availability">Available</p>
+      </div>
+      <div class="book">
+        <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781471134784/jane-eyre-9781471134784_hr.jpg" alt="Book 6">
+        <p class="book-title">Book 6</p>
+        <p class="author-name">Author 6</p>
+        <p class="availability">Unavailable</p>
+      </div>
+      <div class="book">
+        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1551144577i/18405.jpg" alt="Book 15">
+        <p class="book-title">Book 15</p>
+        <p class="author-name">Author 15</p>
+        <p class="availability">Available</p>
+      </div>
+      <div class="book">
+        <img src="https://roberthuntstudio.com/sites/default/files/styles/full_size/public/2018-02/Robert_Hunt_illustration_gabaldon.jpg?itok=WKtswpSj" alt="Book 16">
+        <p class="book-title">Book 16</p>
+        <p class="author-name">Author 16</p>
+        <p class="availability">Available</p>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/81COeJEEL7L._AC_UF1000,1000_QL80_.jpg" alt="Book 17">
+        <p class="book-title">Book 17</p>
+        <p class="author-name">Author 17</p>
+        <p class="availability">Available</p>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/51WxiBn2GUL._AC_UF1000,1000_QL80_.jpg" alt="Book 18">
+        <p class="book-title">Book 18</p>
+        <p class="author-name">Author 18</p>
+        <p class="availability">Available</p>
+      </div>
+    </div>
+    <div class="pagination" id="romance-pagination"></div>
+  </div>
+
+  <div class="category-row">
+    <h2 class="category-title">Science</h2>
+    <div class="book-container" id="science-books">
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/71NvkZxn-fL._AC_UF1000,1000_QL80_.jpg" alt="Book 7">
+        <p class="book-title">Book 7</p>
+        <p class="author-name">Author 7</p>
+        <p class="availability">Available</p>
+      </div>
+      <div class="book">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/15ba25105957829.5f851d78e1c3a.jpg" alt="Book 8">
+        <p class="book-title">Book 8</p>
+        <p class="author-name">Author 8</p>
+        <p class="availability">Available</p>
+      </div>
+      <div class="book">
+        <img src="https://i2.wp.com/www.literaryretreat.com/wp-content/uploads/2018/02/Brave-New-World-Cover.jpg?w=670&ssl=1" alt="Book 9">
+        <p class="book-title">Book 9</p>
+        <p class="author-name">Author 9</p>
+        <p class="availability">Unavailable</p>
+      </div>
+      <div class="book">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/fbd30784706913.5d65800aa3a42.gif" alt="Book 19">
+        <p class="book-title">Book 19</p>
+        <p class="author-name">Author 19</p>
+        <p class="availability">Available</p>
+      </div>
+      <div class="book">
+        <img src="https://bookramblings288957187.files.wordpress.com/2021/09/20210914-foundation-1.jpg" alt="Book 21">
+        <p class="book-title">Book 21</p>
+        <p class="author-name">Author 21</p>
+        <p class="availability">Available</p>
+      </div>
+      <div class="book">
+        <img src="https://m.media-amazon.com/images/I/51Il-Gn0kFL._SX319_BO1,204,203,200_.jpg" alt="Book 22">
+        <p class="book-title">Book 22</p>
+        <p class="author-name">Author 22</p>
+        <p class="availability">Available</p>
+      </div>
+    </div>
+    <div class="pagination" id="science-pagination"></div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search-bar');
+    const filterDropdown = document.getElementById('filter-dropdown');
+
+    searchInput.addEventListener('input', filterBooks);
+    filterDropdown.addEventListener('change', filterBooks);
+
+    function filterBooks() {
+      const searchText = searchInput.value.toLowerCase();
+      const selectedCategory = filterDropdown.value;
+
+      const bookContainers = document.getElementsByClassName('book-container');
+      for (let i = 0; i < bookContainers.length; i++) {
+        const bookContainer = bookContainers[i];
+        const books = bookContainer.getElementsByClassName('book');
+
+        for (let j = 0; j < books.length; j++) {
+          const book = books[j];
+          const title = book.getElementsByClassName('book-title')[0].textContent.toLowerCase();
+          const author = book.getElementsByClassName('author-name')[0].textContent.toLowerCase();
+
+          const categoryMatch = selectedCategory === 'all' || bookContainer.id.includes(selectedCategory);
+          const searchMatch = title.includes(searchText) || author.includes(searchText);
+
+          if (categoryMatch && searchMatch) {
+            book.style.display = 'flex';
+          } else {
+            book.style.display = 'none';
+          }
+        }
+      }
+    }
+
+    // Pagination
+    const bookContainers = document.getElementsByClassName('book-container');
+    for (let i = 0; i < bookContainers.length; i++) {
+      const bookContainer = bookContainers[i];
+      const paginationContainer = bookContainer.nextElementSibling;
+
+      const books = bookContainer.getElementsByClassName('book');
+      const booksPerPage = 4;
+      const pageCount = Math.ceil(books.length / booksPerPage);
+
+      for (let j = 0; j < pageCount; j++) {
+        const page = document.createElement('span');
+        page.classList.add('page-number');
+        page.innerText = j + 1;
+
+        page.addEventListener('click', function () {
+          const currentPage = j + 1;
+
+          for (let k = 0; k < books.length; k++) {
+            const book = books[k];
+            const bookIndex = k + 1;
+
+            if (bookIndex > (currentPage - 1) * booksPerPage && bookIndex <= currentPage * booksPerPage) {
+              book.style.display = 'flex';
+            } else {
+              book.style.display = 'none';
+            }
+          }
+
+          const activePages = paginationContainer.getElementsByClassName('active');
+          for (let l = 0; l < activePages.length; l++) {
+            activePages[l].classList.remove('active');
+          }
+          page.classList.add('active');
+        });
+
+        paginationContainer.appendChild(page);
+      }
+
+      const initialPage = 1;
+      const initialBooks = booksPerPage;
+      for (let m = 0; m < books.length; m++) {
+        const book = books[m];
+        const bookIndex = m + 1;
+
+        if (bookIndex > (initialPage - 1) * booksPerPage && bookIndex <= initialPage * booksPerPage) {
+          book.style.display = 'flex';
+        } else {
+          book.style.display = 'none';
+        }
+      }
+
+      const initialPageElement = paginationContainer.getElementsByClassName('page-number')[initialPage - 1];
+      initialPageElement.classList.add('active');
+    }
+     function updateTotalBookCount() {
+    const bookContainers = document.getElementsByClassName('book-container');
+    let totalCount = 0;
+
+    for (let i = 0; i < bookContainers.length; i++) {
+      const bookContainer = bookContainers[i];
+      const books = bookContainer.getElementsByClassName('book');
+      totalCount += books.length;
+    }
+
+    const totalBooksCountElement = document.getElementById('total-books-count');
+    totalBooksCountElement.textContent = `Total Books: ${totalCount}`;
+  }
+
+  // Call the function to initially display the total book count
+  updateTotalBookCount();
+  </script>
+</body>
+</html>
